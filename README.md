@@ -20,7 +20,7 @@
 - **ไฟล์:** 
   - `BullVPN_API_Test_Assignment.postman_collection`: ไฟล์รวม Request สำหรับทดสอบ API
   - `Production.postman_environment`: ไฟล์ตั้งค่าตัวแปร URL สำหรับการทดสอบ
-  - `demo API.ทย4`: ไฟล์สำหรับแสดงตัวอย่างการทดสอบ API 
+  - `demo API.mp4`: ไฟล์สำหรับแสดงตัวอย่างการทดสอบ API 
 - **รายละเอียด:** ทดสอบ CRUD Operations (GET, POST, PUT, PATCH, DELETE) ผ่าน JSONPlaceholder พร้อมเขียน Assertion Script เพื่อตรวจสอบความถูกต้องของ Response โดยอัตโนมัติ
 
 ---
