@@ -1,0 +1,334 @@
+{
+  "info": {
+    "_postman_id": "027864c7-5b88-4857-8bee-c36ee0002ce5",
+    "name": "BullVPN_API_Test_Assignment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "27263840"
+  },
+  "item": [
+    {
+      "name": "posts",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// ตรวจสอบว่า Status Code ต้องเป็น 200\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "// ตรวจสอบว่าข้อมูลที่ได้กลับมาต้องเป็น Array (รายการโพสต์)\r",
+              "pm.test(\"Response should be an array\", function () {\r",
+              "    pm.expect(pm.response.json()).to.be.an('array');\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/posts",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "posts"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "posts/1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "// ตรวจสอบว่า ID ที่ได้ตรงกับที่เรียกไป\r",
+              "pm.test(\"Verify Post ID is 1\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.id).to.eql(1);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/posts/1",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "posts/1/comments",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// ตรวจสอบว่า Status Code ต้องเป็น 200\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "// ตรวจสอบว่าข้อมูลที่ได้กลับมาต้องเป็น Array (รายการโพสต์)\r",
+              "pm.test(\"Response should be an array\", function () {\r",
+              "    pm.expect(pm.response.json()).to.be.an('array');\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/posts/1/comments",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "posts",
+            "1",
+            "comments"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "comments?postId=1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// ตรวจสอบว่า Status Code ต้องเป็น 200\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "// ตรวจสอบว่าข้อมูลที่ได้กลับมาต้องเป็น Array (รายการโพสต์)\r",
+              "pm.test(\"Response should be an array\", function () {\r",
+              "    pm.expect(pm.response.json()).to.be.an('array');\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/comments?postId=1",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "comments"
+          ],
+          "query": [
+            {
+              "key": "postId",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "posts",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// การสร้างข้อมูลใหม่สำเร็จต้องได้ 201 Created\r",
+              "pm.test(\"Status code is 201\", function () {\r",
+              "    pm.response.to.have.status(201);\r",
+              "});\r",
+              "\r",
+              "// ตรวจสอบว่าข้อมูลที่สร้างถูกส่งกลับมาใน Response อย่างถูกต้อง\r",
+              "pm.test(\"Verify created data\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.title).to.eql(\"test\");\r",
+              "    pm.expect(jsonData.body).to.eql(\"bar\");\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"test\", \"body\": \"bar\", \"userId\": 1}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/posts",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "posts"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "posts/1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Check if data is updated\", function () {\r",
+              "    var jsonData = pm.response.json();\r",
+              "    pm.expect(jsonData.id).to.eql(1);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/posts/1",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "posts/1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.response.to.have.status(200);\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/posts/1",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "posts/1",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "// ตรวจสอบว่า Status Code ต้องเป็น 200\r",
+              "pm.test(\"Status code is 200\", function () {\r",
+              "    pm.expect(pm.response.code).to.be.oneOf([200, 204]);\r",
+              "});\r",
+              ""
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/posts/1",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
